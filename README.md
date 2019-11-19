@@ -32,7 +32,6 @@ the numerical key '1'clears the framebuffer
 ![Image description](https://github.com/ex-zee-ex/VIDEO_WAAAVES_1_5/blob/master/vlcsnap-2019-08-10-22h57m07s147.png)
 
 
-check within the code for more tips on how to use this as a music visualizer, for playing video loops, and for midi mapping controls 
 
 https://youtu.be/PYapmZSiSE4 is a handy dandy video tutorial on how to get started playing around in heres!
 
