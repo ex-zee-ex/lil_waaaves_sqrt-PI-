@@ -23,7 +23,7 @@ if you have never used oF and/or Xcode before here are some troubleshooting tips
 ![Image description](https://github.com/ex-zee-ex/VIDEO_WAAAVES_1_5/blob/master/vlcsnap-2019-08-10-22h55m38s489.png)
 
 numereous secret keyboard commands
-to scale syphon input press[] and ;/
+
 
 to rotate and shift framebuffer xyz positions a,z,s,x,d,c,f,v,g,b,h,n,t,y can all be used, the numerical key '3' resets all positions
 
@@ -35,6 +35,5 @@ the numerical key '1'clears the framebuffer
 
 https://youtu.be/PYapmZSiSE4 is a handy dandy video tutorial on how to get started playing around in heres!
 
-https://youtu.be/LNDmF9-AcW8 on how to use the audio visualizer and midi mapping functions
 
 https://vimeo.com/andreijay for many examples of this program in action.  
