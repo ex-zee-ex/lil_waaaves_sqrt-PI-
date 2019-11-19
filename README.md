@@ -11,7 +11,7 @@ requires ofxSyphon https://github.com/astellato/ofxSyphon,
 ofxMidi https://github.com/danomatika/ofxMidi, 
 and ofxDatGui https://github.com/braitsch/ofxDatGui addons
 
-for windows and linux check the noSyphon folder for alternate versions of some files to copy over into the src folder to get u up and running in syphon free zones
+for windows and linux check the noSyphon folder for alternate versions of some files to copy over into the src folder to get u up and running in syphon free zones.  although i have been told that simply installing the ofxSyphon addon will make sure the code compiles on any operating system, i still recommend following this step to optimize performance.
 
 ![Image description](https://github.com/ex-zee-ex/VIDEO_WAAAVES_1_5/blob/master/swirl.png)
 
