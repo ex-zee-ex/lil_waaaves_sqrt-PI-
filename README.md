@@ -2,7 +2,7 @@
 a tiny version of video_waaaves with less over all functionality flexibility but perhaps a better introduction to the structures and signal paths of working with digital feedback systems
 
 
-# VIDEO_WAAAVES_1.5
+(this is the same instructions for the full size video_waaaves program)
 a video mixer, framebuffer delay, and feedback resynthesis engine built in openFrameworks https://openframeworks.cc/
 
 ![Image description](https://github.com/ex-zee-ex/VIDEO_WAAAVES_1_5/blob/master/hypercuuube.png)
