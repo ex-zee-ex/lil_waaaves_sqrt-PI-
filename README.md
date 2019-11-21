@@ -1,6 +1,8 @@
 # lil_waaaves
 a tiny version of video_waaaves with less over all functionality and flexibility but perhaps a better introduction to the structures and signal paths of working with digital feedback systems
 
+https://www.youtube.com/playlist?list=PLTAAQQpCNd6Ss1fr4toVfyeCEjJ7qYKNr is a handy dandy video guide on how to get this up and running on your computer which seems to be especially helpful for anyone who is brand new to openFrameworks
+
 
 (this is the same instructions for the full size video_waaaves program)
 a video mixer, framebuffer delay, and feedback resynthesis engine built in openFrameworks https://openframeworks.cc/
