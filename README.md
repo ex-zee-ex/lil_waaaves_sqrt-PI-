@@ -7,7 +7,7 @@ https://www.youtube.com/playlist?list=PLTAAQQpCNd6Ss1fr4toVfyeCEjJ7qYKNr is a ha
 !!!!some brief notes on openFrameworks folder structures that need to be read if you don't have experience with this already!!!
 
 
-![Image description](https://github.com/ex-zee-ex/lil_waaaves/blob/Screen Shot 2019-11-23 at 11.47.25 AM.png)
+![Image description](https://github.com/ex-zee-ex/lil_waaaves/blob/master/lil_waaaves_0/Screen%20Shot%202019-11-23%20at%2011.47.25%20AM.png)
 
 
 
