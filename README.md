@@ -4,6 +4,13 @@ a tiny version of video_waaaves with less over all functionality and flexibility
 https://www.youtube.com/playlist?list=PLTAAQQpCNd6Ss1fr4toVfyeCEjJ7qYKNr is a handy dandy video guide on how to get this up and running on your computer which seems to be especially helpful for anyone who is brand new to openFrameworks
 
 
+!!!!some brief notes on openFrameworks folder structures that need to be read if you don't have experience with this already!!!
+
+
+![Image description](https://github.com/ex-zee-ex/lil_waaaves/Screen Shot 2019-11-23 at 11.47.25 AM.png)
+
+
+
 (this is the same instructions for the full size video_waaaves program)
 a video mixer, framebuffer delay, and feedback resynthesis engine built in openFrameworks https://openframeworks.cc/
 
