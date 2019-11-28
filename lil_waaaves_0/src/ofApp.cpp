@@ -27,7 +27,6 @@
 
 
 //so what is going to be added in here
-//try out the new hsb controls for the framebuffers and also test with the other channels
 //how many shader runs can we do?  curious if it will be feasible to do seperate shader runs for all of the vertex displacements but i think that it would be a good goal to have in terms of making a universial function for that to reuse as much as possible!  plus a goal is to test how many shader passes i can run before noticing slowdown!
 
 
@@ -322,9 +321,7 @@ void ofApp::draw() {
     
     //first draw the syphon input to a framebuffer to have it available as a texture to send to the mixer
     syphonTexture.begin();
-    //fix some auto scaling stuffs in general
-  //  int syphonscale=mClient.getWidth()/cam1.getWidth();
-    
+ 
     mClient.draw(0,0,(gui->syphon_scale)*mClient.getWidth(),(gui->syphon_scale)*mClient.getHeight());
     
     syphonTexture.end();

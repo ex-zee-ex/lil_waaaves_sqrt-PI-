@@ -49,9 +49,9 @@ void GuiApp::setup(){
     guisignal->addDropdown("FB0_mixoptions", FBmixoptions);
     ofxDatGuiFolder* fb0mix_thingsfolder = guisignal->addFolder("FB0mixthings", ofColor::white);
     
-    fb0blendslider=fb0mix_thingsfolder->addSlider("fb0 mixamnt",-5.0,5.0);
-    fb0brightkeyamountslider=fb0mix_thingsfolder->addSlider("fb0brightkeyamnt",0.00,1.00);
-    fb0brightkeythreshslider=fb0mix_thingsfolder->addSlider("fb0brightkeythreshamnt",0.00,1.00);
+    fb0blendslider=fb0mix_thingsfolder->addSlider("mix amnt",-5.0,5.0);
+    fb0brightkeyamountslider=fb0mix_thingsfolder->addSlider("luma key V",0.00,1.00);
+    fb0brightkeythreshslider=fb0mix_thingsfolder->addSlider("luma key T",0.00,1.00);
     
     
     
@@ -76,9 +76,9 @@ void GuiApp::setup(){
     guisignal->addDropdown("FB1_mixoptions", FB1mixoptions);
     ofxDatGuiFolder* fb1mix_thingsfolder = guisignal->addFolder("FB1mixthings", ofColor::white);
     
-    fb1blendslider=fb1mix_thingsfolder->addSlider("fb1 mixamnt",-5.0,5.0);
-    fb1brightkeyamountslider=fb1mix_thingsfolder->addSlider("fb1mixbrightkeyamnt",0.00,1.00);
-    fb1brightkeythreshslider=fb1mix_thingsfolder->addSlider("fb1mixbrightkeythreshamnt",0.00,1.00);
+    fb1blendslider=fb1mix_thingsfolder->addSlider("mix amnt",-5.0,5.0);
+    fb1brightkeyamountslider=fb1mix_thingsfolder->addSlider("luma key V",0.00,1.00);
+    fb1brightkeythreshslider=fb1mix_thingsfolder->addSlider("luma key T",0.00,1.00);
     
     fb1brightkeyamountslider->bind(fb1lumakeyvalue);
     fb1brightkeythreshslider->bind(fb1lumakeythresh);
