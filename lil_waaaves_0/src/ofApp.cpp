@@ -27,6 +27,7 @@
 
 
 //so what is going to be added in here
+//try out the new hsb controls for the framebuffers and also test with the other channels
 //how many shader runs can we do?  curious if it will be feasible to do seperate shader runs for all of the vertex displacements but i think that it would be a good goal to have in terms of making a universial function for that to reuse as much as possible!  plus a goal is to test how many shader passes i can run before noticing slowdown!
 
 
@@ -132,7 +133,7 @@ void ofApp::setup() {
     //mClient.set("","Black Syphon");
     mClient.setup();
     //mClient.set("","Syphoner");
- //  mClient.set("","Black Syphon");
+    //mClient.set("","Black Syphon");
     
     mClient.set("","Syphoner");
 
@@ -189,7 +190,7 @@ void ofApp::setup() {
 
     ofClear(0,0,0,255);
  
-       fbo_feedback.end();
+    fbo_feedback.end();
     
     fbo_draw.begin();
     ofClear(0,0,0,255);
@@ -250,9 +251,9 @@ void ofApp::setup() {
     //like a incrementer that cycles thru integers mod the lenght of the device list for selecting inputs cameras
     cam1.listDevices();
     cam1.setVerbose(true);
-    cam1.setDeviceID(0);
-     //cam1.initGrabber(1280, 960);
-   cam1.initGrabber(640, 480);
+    cam1.setDeviceID(1);
+     cam1.initGrabber(1280, 720);
+   //cam1.initGrabber(640, 480);
    // cam1.initGrabber(320, 240);
     
   
@@ -302,7 +303,7 @@ void ofApp::update() {
     //only update if active set a test for that too
     
     
-    
+   
     
     cam1.update();
  
@@ -321,28 +322,18 @@ void ofApp::draw() {
     
     //first draw the syphon input to a framebuffer to have it available as a texture to send to the mixer
     syphonTexture.begin();
- 
+    //fix some auto scaling stuffs in general
+  //  int syphonscale=mClient.getWidth()/cam1.getWidth();
+    
     mClient.draw(0,0,(gui->syphon_scale)*mClient.getWidth(),(gui->syphon_scale)*mClient.getHeight());
     
     syphonTexture.end();
     
  
-   
-    
-    
-    
-    
-    
-    
     
     ///draw to the buffers
     
-    
-   
-    
-    
-    
-    
+ 
     fbo_draw.begin();
     
     
@@ -357,100 +348,47 @@ void ofApp::draw() {
     
     
     
+    //global things
+    shader_mixer.setUniform1f("width", ofGetWidth());
+    shader_mixer.setUniform1f("height", ofGetHeight());
     
+    shader_mixer.setUniform2f("cam1dimensions",ofVec2f(cam1.getWidth(),cam1.getHeight()));
+    
+    
+    //send variables from gui
+    shader_mixer.setUniform1i("channel1", gui->channel1);
+    
+    shader_mixer.setUniform1f("fb0blend", gui->fb0blend);
+    shader_mixer.setUniform1f("fb0lumakeyvalue", gui->fb0lumakeyvalue);
+    shader_mixer.setUniform1f("fb0lumakeythresh", gui->fb0lumakeythresh);
+    shader_mixer.setUniform1i("fb0mix", gui->FBmix);
+    shader_mixer.setUniform1i("fb0_hflip_switch", gui->fb0_hflip_switch);
+    shader_mixer.setUniform1i("fb0_vflip_switch", gui->fb0_vflip_switch);
+    shader_mixer.setUniform1i("fb0_toroid_switch", gui->fb0_toroid_switch);
+    
+    shader_mixer.setUniform1f("fb1blend", gui->fb1blend);
+    shader_mixer.setUniform1f("fb1lumakeyvalue", gui->fb1lumakeyvalue);
+    shader_mixer.setUniform1f("fb1lumakeythresh", gui->fb1lumakeythresh);
+    shader_mixer.setUniform1i("fb1mix", gui->FB1mix);
+    shader_mixer.setUniform1i("fb1_hflip_switch", gui->fb1_hflip_switch);
+    shader_mixer.setUniform1i("fb1_vflip_switch", gui->fb1_vflip_switch);
+    shader_mixer.setUniform1i("fb1_toroid_switch", gui->fb1_toroid_switch);
+    
+    shader_mixer.setUniform1i("cam1_hflip_switch", gui->cam1_hflip_switch);
+    shader_mixer.setUniform1i("cam1_vflip_switch", gui->cam1_vflip_switch);
     
    
     
-    shader_mixer.setUniform1f("width", ofGetWidth());
     
-    shader_mixer.setUniform1f("height", ofGetHeight());
 
     shader_mixer.setUniform1f("cam1_scale", gui->cam1_scale);
    
    
     
   
+    //operations folder
     
-   
-    
-    
-    //fb0
-    ofVec3f hsb_x;
-    hsb_x.set(gui->fb0_hue/10,gui->fb0_saturation/10,gui->fb0_bright/10);
-   // hsb_x.set(1,1,1);
-    shader_mixer.setUniform3f("fb0_hsb_x",hsb_x);
-    
-    ofVec3f hue_x;
-    hue_x.set(gui->fb0_huex_mod/10,gui->fb0_huex_offset/10,gui->fb0_huex_lfo/10);
-    shader_mixer.setUniform3f("fb0_hue_x",hue_x);
-    
-    ofVec3f fb_rescale;
-    fb_rescale.set(gui->fb0_x_displace,gui->fb0_y_displace,gui->fb0_z_displace/100);
-    shader_mixer.setUniform3f("fb0_rescale",fb_rescale);
-    
-    ofVec3f fb_modswitch;
-    fb_modswitch.set(gui->fb0_hue_invert,gui->fb0_saturation_invert,gui->fb0_bright_invert);
-    
-    //fb_modswitch.set(1.0,1.0,1.0);
-    shader_mixer.setUniform3f("fb0_modswitch",fb_modswitch);
-    
-    shader_mixer.setUniform1f("fb0_rotate",(gui->fb0_rotate)/100);
-    
-  //fb1
-    hsb_x.set(gui->fb1_hue/10,gui->fb1_saturation/10,gui->fb1_bright/10);
-    // hsb_x.set(1,1,1);
-    shader_mixer.setUniform3f("fb1_hsb_x",hsb_x);
-    
-    
-    hue_x.set(gui->fb1_huex_mod/10,gui->fb1_huex_offset/10,gui->fb1_huex_lfo/10);
-    shader_mixer.setUniform3f("fb1_hue_x",hue_x);
-    
-
-    fb_rescale.set(gui->fb1_x_displace,gui->fb1_y_displace,gui->fb1_z_displace/100);
-    shader_mixer.setUniform3f("fb1_rescale",fb_rescale);
-    
-    
-    
-   // ofVec3f fb_modswitch;
-    fb_modswitch.set(gui->fb1_hue_invert,gui->fb1_saturation_invert,gui->fb1_bright_invert);
-    
-    //fb_modswitch.set(1.0,1.0,1.0);
-    shader_mixer.setUniform3f("fb1_modswitch",fb_modswitch);
-    shader_mixer.setUniform1f("fb1_rotate",(gui->fb1_rotate)/100);
-    
-    
-    
-   
-    
-   
-    
-    shader_mixer.setUniform1f("ee",ee);
-    
-    
-    //here is where controls from the gui get shunted
-    
-    //for now channel 1 and 2 can only b cam1 or cam2 input
-    shader_mixer.setUniform1i("channel1", gui->channel1);
-  
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //h and v flip controls
-   
-  
-    
-    //channel1 controls from the gui
-    //vector these up
-    ///asuming these will all stay
-    
+    //ch1
     shader_mixer.setUniform1f("channel1bright_x", gui->channel1bright);
     shader_mixer.setUniform1f("channel1hue_x", gui->channel1hue);
     shader_mixer.setUniform1f("channel1saturation_x", gui->channel1saturation);
@@ -465,61 +403,31 @@ void ofApp::draw() {
     shader_mixer.setUniform1i("ch1sat_powmaptoggle", gui->ch1sat_powmaptoggle);
     shader_mixer.setUniform1i("ch1bright_powmaptoggle", gui->ch1bright_powmaptoggle);
     
- 
+    
     
     
     shader_mixer.setUniform1f("channel1bright_powmap", gui->channel1brightpowmap);
     shader_mixer.setUniform1f("channel1hue_powmap", gui->channel1huepowmap);
     shader_mixer.setUniform1f("channel1sat_powmap", gui->channel1saturationpowmap);
     
-  
-   
     
     
+    //fb0
     
+    shader_mixer.setUniform3f("fb0_hsb_x",ofVec3f(gui->fb0_hue/10,gui->fb0_saturation/10,gui->fb0_bright/10));
+    shader_mixer.setUniform3f("fb0_hue_x",ofVec3f(gui->fb0_huex_mod/10,gui->fb0_huex_offset/10,gui->fb0_huex_lfo/10));
+    shader_mixer.setUniform3f("fb0_rescale",ofVec3f(gui->fb0_x_displace,gui->fb0_y_displace,gui->fb0_z_displace/100));
+    shader_mixer.setUniform3f("fb0_modswitch",ofVec3f(gui->fb0_hue_invert,gui->fb0_saturation_invert,gui->fb0_bright_invert));
     
+    shader_mixer.setUniform1f("fb0_rotate",(gui->fb0_rotate)/100);
     
+    //fb1
+    shader_mixer.setUniform3f("fb1_hsb_x",ofVec3f(gui->fb1_hue/10,gui->fb1_saturation/10,gui->fb1_bright/10));
+    shader_mixer.setUniform3f("fb1_hue_x",ofVec3f(gui->fb1_huex_mod/10,gui->fb1_huex_offset/10,gui->fb1_huex_lfo/10));
+    shader_mixer.setUniform3f("fb1_rescale",ofVec3f(gui->fb1_x_displace,gui->fb1_y_displace,gui->fb1_z_displace/100));
+    shader_mixer.setUniform3f("fb1_modswitch",ofVec3f(gui->fb1_hue_invert,gui->fb1_saturation_invert,gui->fb1_bright_invert));
     
-  
-    
-    
-    
-    
-    
-    
-   
-    
-    shader_mixer.setUniform2f("cam1dimensions",ofVec2f(cam1.getWidth(),cam1.getHeight()));
-    
-    
-    
-    
-    
-    
-    shader_mixer.setUniform1f("fb0blend", gui->fb0blend);
-    shader_mixer.setUniform1f("fb0lumakeyvalue", gui->fb0lumakeyvalue);
-    shader_mixer.setUniform1f("fb0lumakeythresh", gui->fb0lumakeythresh);
-    shader_mixer.setUniform1i("fb0mix", gui->FBmix);
-    
-    shader_mixer.setUniform1f("fb1blend", gui->fb1blend);
-    shader_mixer.setUniform1f("fb1lumakeyvalue", gui->fb1lumakeyvalue);
-    shader_mixer.setUniform1f("fb1lumakeythresh", gui->fb1lumakeythresh);
-    shader_mixer.setUniform1i("fb1mix", gui->FB1mix);
-    
-    
-   
-    
-    
-   //h and v flips
-    shader_mixer.setUniform1i("cam1_hflip_switch", gui->cam1_hflip_switch);
-    shader_mixer.setUniform1i("cam1_vflip_switch", gui->cam1_vflip_switch);
-   
-    shader_mixer.setUniform1i("fb0_hflip_switch", gui->fb0_hflip_switch);
-    shader_mixer.setUniform1i("fb0_vflip_switch", gui->fb0_vflip_switch);
-    shader_mixer.setUniform1i("fb1_hflip_switch", gui->fb1_hflip_switch);
-    shader_mixer.setUniform1i("fb1_vflip_switch", gui->fb1_vflip_switch);
-   
-    
+    shader_mixer.setUniform1f("fb1_rotate",(gui->fb1_rotate)/100);
     
     
     
@@ -550,44 +458,22 @@ void ofApp::draw() {
     
     //--------------------------send the textures
     
-    
-    //this gets bound to tex0 when u do this way
-    //some sort of canvas needs to be drawn to start with
-    //so what i need to do is to just draw a rect i think but i should double check that that does not get drawn as a texture
-    //otherwise i think the thing to do here is to replace this with the camera draw and then replace cam1 with tex0
-    //in the shadercode and then that will reduce the amount of total gpu consumption bc less textures are involved
     fbo_feedback.draw(0,0);
   
+    
     shader_mixer.setUniformTexture("syphon",syphonTexture.getTexture(),1);
     shader_mixer.setUniformTexture("cam1",cam1.getTexture(),2);
    
+
     
-    
- 
- 
-    
+    shader_mixer.setUniformTexture("fb0",pastFrames[(abs(framedelayoffset-fbob-gui->fb0delayamnt)-1)%fbob].getTexture(),4);
+    shader_mixer.setUniformTexture("fb1",pastFrames[(abs(framedelayoffset-fbob-gui->fb1delayamnt)-1)%fbob].getTexture(),5);
    
 
     
-     shader_mixer.setUniformTexture("fb0",pastFrames[(abs(framedelayoffset-fbob-gui->fb0delayamnt)-1)%fbob].getTexture(),4);
-    shader_mixer.setUniformTexture("fb1",pastFrames[(abs(framedelayoffset-fbob-gui->fb1delayamnt)-1)%fbob].getTexture(),5);
-   
-    
-  
-    
-   
-    
-    
-    
-       
-    
-  
-    
-    
-   
-    
-   
-    shader_mixer.setUniform1f("qq",qq);
+    //just a couple of tester variables for debugging
+    //shader_mixer.setUniform1f("ee",ee);
+    //shader_mixer.setUniform1f("qq",qq);
     
     shader_mixer.end();
     
@@ -678,30 +564,7 @@ void ofApp::draw() {
     ofTranslate(0,0,0);
     fbo_draw.draw(-ofGetWidth()/2.0,-ofGetHeight()/2.0);
     ofPopMatrix();
-    //audiovisualizer biz
-    
-   
-    
-    
-     
-     
-    
- 
- 
   
-    
-    
-    
-   
-
-   
-    
-    
-    
-  
-    
-    
-    
     //feed the previous frame into position 0 (index0)
     
     pastFrames[abs(fbob-framedelayoffset)-1].begin(); //eeettt
@@ -714,10 +577,10 @@ void ofApp::draw() {
    
     //  ofRotateZRad(.01);
     ofTranslate(ff,gg,hh);
-    ofRotateYRad(ss);
-    ofRotateXRad(aa);
+    ofRotateYRad(ss+gui->y_skew);
+    ofRotateXRad(aa+gui->x_skew);
     ofRotateZRad(dd);
-     ofRotateZRad(oo*TWO_PI/ii);
+    ofRotateZRad(oo*TWO_PI/ii);
    
     
     fbo_draw.draw(-ofGetWidth()/2,-ofGetHeight()/2);
@@ -728,22 +591,7 @@ void ofApp::draw() {
     pastFrames[abs(fbob-framedelayoffset)-1].end(); //eeettt
     //-----____---____---__-__---____-----_--_-
     
-    
-    
-    
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
    
   
     
@@ -862,6 +710,7 @@ void ofApp::exit() {
 
 
 //--------------------------------------------------------------
+
 
 
 //--------------------------------------------------------------

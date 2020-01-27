@@ -32,26 +32,13 @@ void GuiApp::setup(){
     
  
     
-   
-    
-    
-    
-    
-  
-
-   
-    
-   
-    
-    
-    
     ///FBmixcontrols
     guisignal->addDropdown("FB0_mixoptions", FBmixoptions);
     ofxDatGuiFolder* fb0mix_thingsfolder = guisignal->addFolder("FB0mixthings", ofColor::white);
     
-    fb0blendslider=fb0mix_thingsfolder->addSlider("mix amnt",-5.0,5.0);
-    fb0brightkeyamountslider=fb0mix_thingsfolder->addSlider("luma key V",0.00,1.00);
-    fb0brightkeythreshslider=fb0mix_thingsfolder->addSlider("luma key T",0.00,1.00);
+    fb0blendslider=fb0mix_thingsfolder->addSlider("fb0 mixamnt",-5.0,5.0);
+    fb0brightkeyamountslider=fb0mix_thingsfolder->addSlider("KEY V",0.00,1.00);
+    fb0brightkeythreshslider=fb0mix_thingsfolder->addSlider("KEY T",0.00,1.00);
     
     
     
@@ -66,8 +53,7 @@ void GuiApp::setup(){
     fb0_hflip_toggle=fb0mix_thingsfolder->addToggle("fb0 h mirror",false);
     fb0_vflip_toggle=fb0mix_thingsfolder->addToggle("fb0 v mirror",false);
     
-    
-
+    fb0_toroid_toggle=fb0mix_thingsfolder->addToggle("fb0 toroid",true);
     
     
     
@@ -76,9 +62,9 @@ void GuiApp::setup(){
     guisignal->addDropdown("FB1_mixoptions", FB1mixoptions);
     ofxDatGuiFolder* fb1mix_thingsfolder = guisignal->addFolder("FB1mixthings", ofColor::white);
     
-    fb1blendslider=fb1mix_thingsfolder->addSlider("mix amnt",-5.0,5.0);
-    fb1brightkeyamountslider=fb1mix_thingsfolder->addSlider("luma key V",0.00,1.00);
-    fb1brightkeythreshslider=fb1mix_thingsfolder->addSlider("luma key T",0.00,1.00);
+    fb1blendslider=fb1mix_thingsfolder->addSlider("fb1 mixamnt",-5.0,5.0);
+    fb1brightkeyamountslider=fb1mix_thingsfolder->addSlider("KEY V",0.00,1.00);
+    fb1brightkeythreshslider=fb1mix_thingsfolder->addSlider("KEY T",0.00,1.00);
     
     fb1brightkeyamountslider->bind(fb1lumakeyvalue);
     fb1brightkeythreshslider->bind(fb1lumakeythresh);
@@ -92,16 +78,9 @@ void GuiApp::setup(){
     fb1_hflip_toggle=fb1mix_thingsfolder->addToggle("fb1 h mirror",false);
     fb1_vflip_toggle=fb1mix_thingsfolder->addToggle("fb1 v mirror",false);
 
-
+    fb1_toroid_toggle=fb1mix_thingsfolder->addToggle("fb1 toroid",true);
     
-  
-
-    
-    
-   
-
-    
-    
+ 
   
     
     blur_amount_slider=guisignal->addSlider("blur amount",0.0,5.0);
@@ -122,7 +101,14 @@ void GuiApp::setup(){
     cam1_hflip_toggle=guisignal->addToggle("cam1 h mirror",false);
     cam1_vflip_toggle=guisignal->addToggle("cam1 v mirror",false);
     
+    x_skew_amount_slider=guisignal->addSlider("x_skew",-3.14/8,3.14/8);
+    x_skew_amount_slider->bind(x_skew);
+    
+    y_skew_amount_slider=guisignal->addSlider("y_skew",-3.14/8,3.14/8);
+    y_skew_amount_slider->bind(y_skew);
 
+
+    
     syphonOutputtoggle=guisignal->addToggle("syphon out",false);
     tetrahedron_switch_toggle=guisignal->addToggle("tetrahedron",false);
     guisignal->onDropdownEvent(this, &GuiApp::onDropdownEvent);
@@ -164,20 +150,7 @@ void GuiApp::setup(){
     channel1brightpowmapslider= channel1_thingsfolder->addSlider("ch1brightpowmap", -4.0, 4.0);
     
   
-   // channel1_thingsfolder->expand();
-    
-    
-    
-    
   
-
-    
-    
-    
- 
-    
-
-    
     
     //bind the gui channel1
     channel1hueslider->bind(channel1hue);
@@ -197,15 +170,15 @@ void GuiApp::setup(){
     fb0_bright_slider= fb0_opsfolder->addSlider("bright_x", 0.0, 20.0);
     
     fb0_hue_invert_toggle=fb0_opsfolder->addToggle("hue0 invert",0);
-    fb0_saturation_invert_toggle=fb0_opsfolder->addToggle("saturationg0 invert",0);
+    fb0_saturation_invert_toggle=fb0_opsfolder->addToggle("saturation0 invert",0);
     fb0_bright_invert_toggle=fb0_opsfolder->addToggle("bright0 invert",0);
     
     fb0_huex_mod_slider= fb0_opsfolder->addSlider("huex_mod", 0.0, 20.0);
     fb0_huex_offset_slider= fb0_opsfolder->addSlider("huex_offset", -20.0, 20.0);
     fb0_huex_lfo_slider= fb0_opsfolder->addSlider("huex_lfo", -20.0, 20.0);
     
-    fb0_x_displace_slider= fb0_opsfolder->addSlider("x_displace", -20.0, 20.0);
-    fb0_y_displace_slider= fb0_opsfolder->addSlider("y_displace", -20.0, 20.0);
+    fb0_x_displace_slider= fb0_opsfolder->addSlider("x_displace", -100.0, 100.0);
+    fb0_y_displace_slider= fb0_opsfolder->addSlider("y_displace", -100.0, 100.0);
     fb0_z_displace_slider= fb0_opsfolder->addSlider("z_displace", 90, 110.0);
     fb0_rotate_slider=fb0_opsfolder->addSlider("rotate", -157.07, 157.07);
     
@@ -229,15 +202,15 @@ void GuiApp::setup(){
     fb1_bright_slider= fb1_opsfolder->addSlider("bright_x", 0.0, 20.0);
     
     fb1_hue_invert_toggle=fb1_opsfolder->addToggle("hue1 invert",0);
-    fb1_saturation_invert_toggle=fb1_opsfolder->addToggle("saturationg1 invert",0);
+    fb1_saturation_invert_toggle=fb1_opsfolder->addToggle("saturation1 invert",0);
     fb1_bright_invert_toggle=fb1_opsfolder->addToggle("bright1 invert",0);
     
     fb1_huex_mod_slider= fb1_opsfolder->addSlider("huex_mod", 0.0, 20.0);
     fb1_huex_offset_slider= fb1_opsfolder->addSlider("huex_offset", -20.0, 20.0);
     fb1_huex_lfo_slider= fb1_opsfolder->addSlider("huex_lfo", -20.0, 20.0);
     
-    fb1_x_displace_slider= fb1_opsfolder->addSlider("x_displace", -20.0, 20.0);
-    fb1_y_displace_slider= fb1_opsfolder->addSlider("y_displace", -20.0, 20.0);
+    fb1_x_displace_slider= fb1_opsfolder->addSlider("x_displace", -100.0, 100.0);
+    fb1_y_displace_slider= fb1_opsfolder->addSlider("y_displace", -100.0, 100.0);
     fb1_z_displace_slider= fb1_opsfolder->addSlider("z_displace", 90, 110);
     fb1_rotate_slider=fb1_opsfolder->addSlider("rotate", -157.07, 157.07);
     
@@ -255,6 +228,8 @@ void GuiApp::setup(){
     fb1_rotate_slider->bind(fb1_rotate);
     
     
+    //pixels
+    
     //cam1
     ofxDatGuiFolder* cam1_pixelfolder = guithings->addFolder("cam1 pixelate", ofColor::white);
     cam1_pixel_toggle=cam1_pixelfolder->addToggle("cam1 pixel switch",0);
@@ -267,11 +242,7 @@ void GuiApp::setup(){
     cam1_pixel_mix_slider->bind(cam1_pixel_mix);
     cam1_pixel_brightscale_slider->bind(cam1_pixel_brightscale);
     
-    
-    
-    
-    
-    
+ 
     //fb0
     ofxDatGuiFolder* fb0_pixelfolder = guithings->addFolder("fb0 pixelate", ofColor::white);
     fb0_pixel_toggle=fb0_pixelfolder->addToggle("fb0 pixel switch",0);
@@ -302,113 +273,12 @@ void GuiApp::setup(){
     guithings->onButtonEvent(this, &GuiApp::onButtonEvent);
     
     
-    //----------------------
-    //use this for how to manipulate each framebuffer in space seperatly
-    //so for each one we want to have seperate vert shader controls as well
-    //i think we start from there, then figure out how to replicate all those rotations and stuff
-    //in more concise shader terms
-    //s
-   
-    
-  
-   /*
-    
-    guiFBops= new ofxDatGui(2*guiscale,0 );
-    guiFBops->addBreak();
-    
-    
-    
-    
-  
-    
-    
-   
-    
-    
-
- 
-    guiFBops->onButtonEvent(this, &GuiApp::onButtonEvent);
-    
-    */
-    
-    //pixelations functions
-    
-    /*
-    guiPixelate= new ofxDatGui(2*guiscale,0 );
-    guiPixelate->addBreak();
-    
-    //cam1
-    ofxDatGuiFolder* cam1_pixelfolder = guiPixelate->addFolder("cam1 pixelate", ofColor::white);
-    cam1_pixel_toggle=cam1_pixelfolder->addToggle("cam1 pixel switch",0);
-    cam1_pixel_scale_slider=cam1_pixelfolder->addSlider("quantisation",0,256);
-    cam1_pixel_mix_slider=cam1_pixelfolder->addSlider("mix",-2,2);
-    cam1_pixel_brightscale_slider=cam1_pixelfolder->addSlider("bright scale",-10,10);
-    
-    
-    cam1_pixel_scale_slider->bind(cam1_pixel_scale);
-    cam1_pixel_mix_slider->bind(cam1_pixel_mix);
-    cam1_pixel_brightscale_slider->bind(cam1_pixel_brightscale);
-    
-   
-    
-  
-    
-
-    //fb0
-    ofxDatGuiFolder* fb0_pixelfolder = guiPixelate->addFolder("fb0 pixelate", ofColor::white);
-    fb0_pixel_toggle=fb0_pixelfolder->addToggle("fb0 pixel switch",0);
-    fb0_pixel_scale_slider=fb0_pixelfolder->addSlider("quantisation",0,256);
-    fb0_pixel_mix_slider=fb0_pixelfolder->addSlider("mix",-2,2);
-    fb0_pixel_brightscale_slider=fb0_pixelfolder->addSlider("bright scale",-10,10);
-
-
-    fb0_pixel_scale_slider->bind(fb0_pixel_scale);
-    fb0_pixel_mix_slider->bind(fb0_pixel_mix);
-    fb0_pixel_brightscale_slider->bind(fb0_pixel_brightscale);
-    
-    //fb1
-    ofxDatGuiFolder* fb1_pixelfolder = guiPixelate->addFolder("fb1 pixelate", ofColor::white);
-    fb1_pixel_toggle=fb1_pixelfolder->addToggle("fb1 pixel switch",0);
-    fb1_pixel_scale_slider=fb1_pixelfolder->addSlider("quantisation",0,256);
-    fb1_pixel_mix_slider=fb1_pixelfolder->addSlider("mix",-2,2);
-    fb1_pixel_brightscale_slider=fb1_pixelfolder->addSlider("bright scale",-10,10);
-    
-    
-    fb1_pixel_scale_slider->bind(fb1_pixel_scale);
-    fb1_pixel_mix_slider->bind(fb1_pixel_mix);
-    fb1_pixel_brightscale_slider->bind(fb1_pixel_brightscale);
-    
-   
-    
-    
-  
-    
-    
-    
-    
- 
-    guiPixelate->onButtonEvent(this, &GuiApp::onButtonEvent);
-     
-     */
-    ofxDatGuiLog::quiet();
+       ofxDatGuiLog::quiet();
     
   }
     //-----------------------------
 
-/*
-void GuiApp::onColorPickerEvent(ofxDatGuiColorPickerEvent e)
-{
-    cout << "onColorPickerEvent: " << e.target->getLabel() << " " << e.target->getColor() << endl;
-    ofSetBackgroundColor(e.color);
-    
-    
-    //need to set up label based if statements here
-    keyColorFromPicker=e.target->getColor();
-}
- 
- 
- */
-//another thing to thinkabout with dropdown events is
+///another thing to thinkabout with dropdown events is
 //that i could just have one dropdown event
 //and seperate the same inputs from diferent dropdowns
 //by like ch2_cam2 etc and then the 1 function can shunt everything
@@ -428,24 +298,14 @@ void GuiApp::onColorPickerEvent(ofxDatGuiColorPickerEvent e)
         
         }//endife1
         
-      
-            
-    
+
         if(e.target->getLabel()=="channel1 syphon"){
             channel1=2;
             
         }//endife2
         
-        
-        
-     
 
-        
-        
        
-        
-     
-        
         if(e.target->getLabel()=="FB none"){
             FBmix=0;
         }
@@ -476,24 +336,6 @@ void GuiApp::onColorPickerEvent(ofxDatGuiColorPickerEvent e)
         }
         
       
-
-
-        
-     
-        
-       
-     
-      
-
-        
-
-    
-
-        
-        
-        
-        
-        
         
     }
 
@@ -525,33 +367,29 @@ void GuiApp::onButtonEvent(ofxDatGuiButtonEvent e)
     if(e.target->getLabel()=="fb1 h mirror"){fb1_hflip_switch=!fb1_hflip_switch;}
     if(e.target->getLabel()=="fb1 v mirror"){fb1_vflip_switch=!fb1_vflip_switch;}
     
+    if(e.target->getLabel()=="fb1 toroid"){fb1_toroid_switch=!fb1_toroid_switch;}
+    if(e.target->getLabel()=="fb0 toroid"){fb0_toroid_switch=!fb0_toroid_switch;}
+    
  
 
     
     if(e.target->getLabel()=="hue0 invert"){fb0_hue_invert=!fb0_hue_invert;}
     
-    if(e.target->getLabel()=="saturationg0 invert"){fb0_saturation_invert=!fb0_saturation_invert;}
+    if(e.target->getLabel()=="saturation0 invert"){fb0_saturation_invert=!fb0_saturation_invert;}
     
     if(e.target->getLabel()=="bright0 invert"){fb0_bright_invert=!fb0_bright_invert;}
     
     if(e.target->getLabel()=="hue1 invert"){fb1_hue_invert=!fb1_hue_invert;}
     
-    if(e.target->getLabel()=="saturationg1 invert"){fb1_saturation_invert=!fb1_saturation_invert;}
+    if(e.target->getLabel()=="saturation1 invert"){fb1_saturation_invert=!fb1_saturation_invert;}
     
     if(e.target->getLabel()=="bright1 invert"){fb1_bright_invert=!fb1_bright_invert;}
     
-  
-    
-    
-
-    
+   
     
     if(e.target->getLabel() == "syphon out"){ syphonOutput=!syphonOutput;}
     
-    
-    
-    
-    
+  
     //channel1toggles
     if(e.target->getLabel() == "ch1huepowmap"){
         ch1hue_powmaptoggle =! ch1hue_powmaptoggle;

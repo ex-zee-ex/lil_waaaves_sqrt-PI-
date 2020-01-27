@@ -32,11 +32,14 @@ public:
 	void mousePressed(int x, int y, int button);
 	void mouseReleased();
 	
+    
+ 
+    
     //-----------guibiz
     shared_ptr<GuiApp> gui;
     
     
-	
+    
     
     ofShader shader_mixer;
     ofShader shader_blur;
