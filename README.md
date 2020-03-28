@@ -17,6 +17,9 @@ https://openframeworks.cc/setup/vs/
 
 then go within the WAAAVES-of...etcetc folder to apps->myapps->lil_waaaves_IMguitest_nosyphon->double click on lil_waaavesIMguitest_nosyphon.vcxproj (yo i'll fix the folder names and whatnot  in the future but i wanted to get this version out and into the wild asap because i feel pretty lame for not whipping up a windows version earlier!) then press the play button that also says "Local Windows Debugger" and have fun!
 
+if yr still having some issues then maybe head on over to the video waaaves fb group and ask around !
+https://www.facebook.com/groups/440566853501750
+
 
 https://www.youtube.com/playlist?list=PLTAAQQpCNd6Ss1fr4toVfyeCEjJ7qYKNr is a handy dandy video guide on how to get this up and running on your computer which seems to be especially helpful for anyone who is brand new to openFrameworks
 
