@@ -1,8 +1,21 @@
 # lil_waaaves
 a tiny version of video_waaaves with less over all functionality and flexibility but perhaps a better introduction to the structures and signal paths of working with digital feedback systems
 
-OK! so installing from these files here on the github are kind of only for folks reasonably well versed in navigating openFrameworks already!  I can't really help anyone out anymore with this sort of thing as the volume of requests has greatly outpaced the amount of time I can afford to spend on that! But for everyone who has no idea what the heck an open frame work is don't worry I jurry rigged a reasonable solution for yalls!  For OSX Download the zip here https://drive.google.com/open?id=1a2TScyK68Qm4_pSTsc3hG2fPHbgm-uLf, unzip and follow the instructions in the txt file named "(()))00ReadThisTextFile!" and have fun!
-For windows (and maybe linux?? can some folks maybe help me test this and let me know?) download the zip here https://drive.google.com/open?id=11PUoCzV10ZMobP1pHeaBF79tpfTkrXbN and follow the instructions here https://openframeworks.cc/setup/vs/ then go within the WAAAVES-of...etcetc folder to apps->myapps->lil_waaaves_IMguitest_nosyphon->double click on lil_waaavesIMguitest_nosyphon.vcxproj (yo i'll fix the folder names and whatnot  in the future but i wanted to get this version out and into the wild asap because i feel pretty lame for not whipping up a windows version earlier!) then press the play button that also says "Local Windows Debugger" and have fun!
+OK! so installing from these files here on the github are kind of only for folks reasonably well versed in navigating openFrameworks already!  I can't really help anyone out anymore with this sort of thing as the volume of requests has greatly outpaced the amount of time I can afford to spend on that! But for everyone who has no idea what the heck an open frame work is don't worry I jurry rigged a reasonable solution for yalls!  For OSX Download the zip here
+
+https://drive.google.com/open?id=1a2TScyK68Qm4_pSTsc3hG2fPHbgm-uLf
+
+unzip and follow the instructions in the txt file named "(()))00ReadThisTextFile!" and have fun!
+
+For windows (and maybe linux?? can some folks maybe help me test this and let me know?) download the zip here
+
+https://drive.google.com/open?id=11PUoCzV10ZMobP1pHeaBF79tpfTkrXbN 
+
+and follow the instructions here 
+
+https://openframeworks.cc/setup/vs/ 
+
+then go within the WAAAVES-of...etcetc folder to apps->myapps->lil_waaaves_IMguitest_nosyphon->double click on lil_waaavesIMguitest_nosyphon.vcxproj (yo i'll fix the folder names and whatnot  in the future but i wanted to get this version out and into the wild asap because i feel pretty lame for not whipping up a windows version earlier!) then press the play button that also says "Local Windows Debugger" and have fun!
 
 
 https://www.youtube.com/playlist?list=PLTAAQQpCNd6Ss1fr4toVfyeCEjJ7qYKNr is a handy dandy video guide on how to get this up and running on your computer which seems to be especially helpful for anyone who is brand new to openFrameworks
