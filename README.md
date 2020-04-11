@@ -9,9 +9,7 @@ unzip and follow the instructions in the txt file named "(()))00ReadThisTextFile
 
 For windows (and maybe linux?? can some folks maybe help me test this and let me know?) download the zip here
 
-https://drive.google.com/open?id=11PUoCzV10ZMobP1pHeaBF79tpfTkrXbN 
-
-and follow the instructions here 
+no lil waaaves for windows and linux rn! check out video_waaaves 2.0 instead
 
 https://openframeworks.cc/setup/vs/ 
 
