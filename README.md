@@ -1,54 +1,7 @@
 # lil_waaaves
-a tiny version of video_waaaves with less over all functionality and flexibility but perhaps a better introduction to the structures and signal paths of working with digital feedback systems
+HEADS UP: lil waaaves is deprecated and not actively supported anymore, feel free to play around with it but I recommend diving right into Video Waaaves 2.5 instead and won't be supporting this thingy any more!  Highly advised for folks to figure out stuffs in openFrameworks first before digging to heavily into using this as theres a lot of nitpicky DAW things to manage and its become unfeasible for me to be remotely troubleshooting this for every waaaaves fan out there.
 
-OK! so installing from these files here on the github are kind of only for folks reasonably well versed in navigating openFrameworks already!  I can't really help anyone out anymore with this sort of thing as the volume of requests has greatly outpaced the amount of time I can afford to spend on that! But for everyone who has no idea what the heck an open frame work is don't worry I jurry rigged a reasonable solution for yalls!  For OSX Download the zip here
-
-https://drive.google.com/open?id=1a2TScyK68Qm4_pSTsc3hG2fPHbgm-uLf
-
-unzip and follow the instructions in the txt file named "(()))00ReadThisTextFile!" and have fun!
-
-For windows (and maybe linux?? can some folks maybe help me test this and let me know?) download the zip here
-
-no lil waaaves for windows and linux rn! check out video_waaaves 2.0 instead
-
-https://openframeworks.cc/setup/vs/ 
-
-then go within the WAAAVES-of...etcetc folder to apps->myapps->lil_waaaves_IMguitest_nosyphon->double click on lil_waaavesIMguitest_nosyphon.vcxproj (yo i'll fix the folder names and whatnot  in the future but i wanted to get this version out and into the wild asap because i feel pretty lame for not whipping up a windows version earlier!) then press the play button that also says "Local Windows Debugger" and have fun!
-
-if yr still having some issues then maybe head on over to the video waaaves fb group and ask around !
-https://www.facebook.com/groups/440566853501750
-
-
-https://www.youtube.com/playlist?list=PLTAAQQpCNd6Ss1fr4toVfyeCEjJ7qYKNr is a handy dandy video guide on how to get this up and running on your computer which seems to be especially helpful for anyone who is brand new to openFrameworks
-
-
-!!!!some brief notes on openFrameworks folder structures that need to be read if you don't have experience with this already!!!
-
-
-![Image description](https://github.com/ex-zee-ex/lil_waaaves/blob/master/lil_waaaves_0/Screen%20Shot%202019-11-23%20at%2011.47.25%20AM.png)
-
-there are 2 potentially wonky things that can happen installing this if yr using xcode and osx! 
-the first is that when you unzip the folder after it has been downloaded the unarchiver program you used may have added an extra folder or two in process (like lil_waaaves_master->lil_waaaves->lil_waaaves_0->all the actual folder structure stuffs).  but openFrameworks has a real pathology about folder structures and is going to go kinda bonkers on you and throw a tantrum if you put the folder with all the code in it in several nested folders within myApps.  So check the folder structure in the picture above and make sure that matches up with what is happening in your folders!
-the second is that sometimes xcode will try to make duplicate xcodeproj files for this project.  you can see in the picture above that there is a lil_waaaaves_0.xcodeproj and a Test_ing0.xcodeproj.  well the Test_ing0.xcodeproj is the one you need to double click on to open up in xcode, you are pretty much guaranteed some errors in yr build if you run the lil_waaaves_0.xcodeproj!  check the youtube tutorial on getting projects downloaded from github running in openFrameworks for like animated details on this as well!
-
-
-(this is the same instructions for the full size video_waaaves program)
-a video mixer, framebuffer delay, and feedback resynthesis engine built in openFrameworks https://openframeworks.cc/
-
-![Image description](https://github.com/ex-zee-ex/VIDEO_WAAAVES_1_5/blob/master/hypercuuube.png)
-
-requires ofxSyphon https://github.com/astellato/ofxSyphon, 
-ofxMidi https://github.com/danomatika/ofxMidi, 
-and ofxDatGui https://github.com/braitsch/ofxDatGui addons
-
-for windows and linux check the noSyphon folder for alternate versions of some files to copy over into the src folder to get u up and running in syphon free zones.  although i have been told that simply installing the ofxSyphon addon will make sure the code compiles on any operating system, i still recommend following this step to optimize performance.
-
-![Image description](https://github.com/ex-zee-ex/VIDEO_WAAAVES_1_5/blob/master/swirl.png)
-
-if you have never used oF and/or Xcode before here are some troubleshooting tips to try before contacting me
-1. the entire folder structure needs to be intact and moved into the apps/myApps folder within the openframeworks folder
-2. try running project generator and importing this folder (with the abovementioned addons) if theres still errors
-3. https://openframeworks.cc/setup/xcode/ has some advice on how to troubleshoot troublesome addons as well so check this out too!
+a tiny version of an older version ofvideo_waaaves with less over all functionality and flexibility but perhaps a better introduction to the structures and signal paths of working with digital feedback systems?  questionable indeed
 
 ![Image description](https://github.com/ex-zee-ex/VIDEO_WAAAVES_1_5/blob/master/vlcsnap-2019-08-10-22h55m38s489.png)
 
